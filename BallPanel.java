@@ -67,6 +67,21 @@ public class BallPanel extends JPanel
 												ball.getDiameter(), // diameter of the ball
 												ball.getDiameter() ) // diameter of the ball
 						);
+				
+				g2d.setPaint( Color.BLACK ); // set the colour to black for the shadows
+				
+				// double variable to represent diameter of the shadow
+				// this is a percentage of the ball's diameter depending on how far from
+				// the bottom of the window the ball is
+				double shadowDiameter = ( double ) ball.getDiameter() * ( ( double ) ball.getYCoord() / ( double ) panelHeight );
+				
+				// paint the shadow
+				g2d.fill( new Ellipse2D.Double( ball.getXCoord(), // same horizontal position as the ball
+												panelHeight - ( shadowDiameter / 2 ), // vertical position at bottom of panel
+												shadowDiameter * 1.5, // shadow is 1.5 times the width of the ball
+												shadowDiameter / 2 // shadow is half the height of the ball
+											  )
+						);
 			} // end if
 		} // end for loop
 	} // end method paintComponent
